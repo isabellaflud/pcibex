@@ -1,0 +1,64 @@
+
+PennController.Sequence ("instrucoes1", "pratica1", "pratica2", 
+rshuffle("alvo","dist"),
+"send", "telaFinal")
+PennController.SetCounter ("counter", "inc", "1")
+PennController.SendResults ("send")
+
+newTrial ("instrucoes1",
+defaultText
+.print()
+,
+newText ("instrucoes1A", "<b>teste de instrucao aqui</b>")
+.cssContainer ({"margin-bottom": "1em"})
+.center()
+.print()
+,
+newText ("instrucoes1B", "<b> segundo bloco de texto</b>")
+.cssContainer({"margin-bottom": "1em"})
+,
+newButton ("botao1", "Clique aqui para continuar")
+.center()
+.print()
+.wait()
+);
+
+PennController.Template ("experimentomodais.csv", row =>
+newTrial ("contexto", row.contexto
+.cssContainer ({"margin-bottom": "1em"})
+.center()
+.print()
+,
+newButton ("botao2", "Clique aqui para continuar")
+))
+
+PennController.Template ("experimentomodais.csv", row => 
+newTrial ("presentence",
+newText ("presetence", row.pre
+.cssContainer ({"margin-bottom": "1em"})
+.center()
+.print()
+,
+newText ("sentence", row.estimulo
+.cssContainer ({"margin-bottom": "1em"})
+.center()
+.print()
+,
+newText ("question", "Pergunta aqui?")
+.center()
+.print()
+,
+newScale ("resposta", 7)
+.before(newText("escala", "Muito boa"))
+.after (newText("escala2", "Muito ruim"))
+.center()
+.print()
+.log()
+.wait()
+,
+newButton ("botao3","Clique aqui para continuar")
+.center()
+.print()
+.wait()
+)))
+);
